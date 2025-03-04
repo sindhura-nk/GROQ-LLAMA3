@@ -1,4 +1,5 @@
 # import necessary libraries
+import os
 import pandas as pd # data ingestion
 import streamlit as st # UI 
 from groq import Groq # AI interface and Llama model responses
@@ -7,7 +8,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.naive_bayes import MultinomialNB
 
 # retrieve api key details from secret file
-api_key = st.secrets["API_KEY"]
+#api_key = st.secrets["API_KEY"]
+api_key = os.getenv("API_KEY", st.secrets.get("API_KEY", None))
 
 # create a groq instance
 client = Groq(api_key=api_key)
