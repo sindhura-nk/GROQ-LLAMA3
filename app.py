@@ -14,7 +14,7 @@ api_key = st.secrets["API_KEY"]
 client = Groq(api_key=api_key)
 
 # Load the data for NLP Intent Recognition
-df = pd.read_csv("/workspaces/GROQ-LLAMA3/nlp_intent_dataset.csv")
+df = pd.read_csv("nlp_intent_dataset.csv")
 # separate x and y features
 x = df["User Query"]
 y = df["Intent"]
