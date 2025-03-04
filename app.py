@@ -9,7 +9,7 @@ from sklearn.naive_bayes import MultinomialNB
 
 # retrieve api key details from secret file
 #api_key = st.secrets["GROQ_API_KEY"]
-api_key = os.getenv("GROQ_API_KEY", st.secrets.get("API_KEY", None))
+api_key = os.getenv("GROQ_API_KEY", st.secrets.get("GROQ_API_KEY", None))
 
 # create a groq instance
 client = Groq(api_key=api_key)
