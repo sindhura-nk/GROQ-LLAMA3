@@ -4,7 +4,7 @@ import streamlit as st # UI
 from groq import Groq # AI interface and Llama model responses
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.pipeline import Pipeline
-from sklearn.svm import SVM
+from sklearn.naive_bayes import MultinomialNB
 
 # retrieve api key details from secret file
 api_key = st.secrets["API_KEY"]
@@ -21,7 +21,7 @@ y = df["Intent"]
 # create a pipeline for tfidf vectorizer and naive bayes 
 pipeline = Pipeline([
     ("tfidf",TfidfVectorizer()),
-    ("lr",LogisticRegression())
+    ("clf",MultinomialNB())
     ])
 
 pipeline.fit(x,y)
@@ -36,14 +36,14 @@ responses2 = {
 
 # create a function which predicts intent predictions
 def predict_intent(userip):
-    pipeline.predict([userip])[0]
+    return pipeline.predict([userip])[0]
 
 # create a function which takes the text ip and checks if the intent is present in the responses file.
 # If its present, then return the response operation
 # If it is not present, then return the llama model response
 def chabot_response(text):
     intent = predict_intent(text)
-    print(f"predicted intent is : {responses2[intent]}")
+    
 
     if intent in responses2:
         return responses2[intent]

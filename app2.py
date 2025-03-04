@@ -9,7 +9,7 @@ api_key = st.secrets["API_KEY"]
 
 client = Groq(api_key=api_key)
 
-data = pd.read_csv("/workspaces/GROQ-llama3.1/nlp_intent_dataset.csv")
+data = pd.read_csv("/workspaces/GROQ-LLAMA3/nlp_intent_dataset.csv")
 X= data["User Query"]
 Y = data["Intent"]
 
